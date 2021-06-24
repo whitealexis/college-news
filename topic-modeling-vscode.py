@@ -9,7 +9,6 @@ outCorpus = "60s-tm"
 
 if os.path.exists(outCorpus) == False:
     os.mkdir(outCorpus)
-from nltk import corpus
 
 filenames = []
 for root, dirs, files, in os.walk(inCorpus, topdown=False):
