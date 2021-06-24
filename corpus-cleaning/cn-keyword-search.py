@@ -1,4 +1,4 @@
-#keyword search and store
+#keyword search and store for college news
 
 #import statements 
 import re #regular expressions, checks if a string matches a regular expression
@@ -27,7 +27,7 @@ for filename in os.listdir(directory): #for every file in the folder, do these s
 #use GUI to create and save an empty csv file
 header = ["filename", "date", "keyword", "count"] #name header cells
 #put saved csv file name below in quotes
-with open("cn-issues-keyword-info.csv", "w", encoding = "utf-8", newline = '') as outfile: #open and write to csv file
+with open("csv-file-name.csv", "w", encoding = "utf-8", newline = '') as outfile: #open and write to csv file
     writer = csv.writer(outfile) #create csv writer
     writer.writerow(header) #write header row
     writer.writerows(rows) #write information rows
