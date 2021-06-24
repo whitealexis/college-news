@@ -20,7 +20,7 @@ for filename in os.listdir(directory): #for every file in the folder, do these s
         keywordcount = len(keyword_list) #count keyword instances found
         match = re.search(r"\d{4}-\d{2}-\d{2}", filename) #search file name for date
         date = datetime.datetime.strptime(match.group(), "%Y-%m-%d").date() #pull date from rest of file name
-        data = [newfilename[7:], date, keyword, keywordcount] #group file name (minus issues/ part), date, keyword, and keyword count in a list
+        data = [newfilename[7:19], date, keyword, keywordcount] #group file name (minus issues/ and .txt parts), date, keyword, and keyword count in a list
         rows.append(data) #put data into rows variable
 
 #write csv file to store keyword information
