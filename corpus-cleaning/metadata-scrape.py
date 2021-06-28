@@ -10,12 +10,9 @@ import re # regular expressions, used to identify patterns from strings
 # generating the list of URLs for the pages of search results
 pages = [] # create a list
 for index in range(0, 67): # run a loop for each number, 0 to 66
-    # define the base url
-    url = "https://digitalcollections-staging.tricolib.brynmawr.edu/collections/bryn-mawr-college-news?page="
-    # add the index number (the page number), which must be made into a string
-    url += str(index)
-    # add the new url to the list of pages
-    pages.append(url)
+    url = "https://digitalcollections-staging.tricolib.brynmawr.edu/collections/bryn-mawr-college-news?page=" # define the base url
+    url += str(index) # add the index number (the page number), which must be made into a string
+    pages.append(url) # add the new url to the list of pages
 
 # getting all of the links from each search results page
 entries = [] # create a list
