@@ -1,18 +1,17 @@
-import math
-import os
-import re
+import math #import math module to get access to mathematical functions
+import os #import operating system (allows you to navigate or manipulate directories)
+import re #import regex module
 
-os.chdir("/Users/averymatteo/Desktop/projects/")
+os.chdir("/Users/averymatteo/Desktop/projects/") #use os.chdir to navigate to where College News issues are stored
 
-inCorpus = "issues"
-outCorpus = "60s-tm"
+inCorpus = "issues" #define inCorpus as issues
+outCorpus = "60s-tm" #define outCorpus as the decade you want 
 
-if os.path.exists(outCorpus) == False:
-    os.mkdir(outCorpus)
+if os.path.exists(outCorpus) == False: #use comparison operator to text the existence of the folder
+    os.mkdir(outCorpus) #creates outCorpus (come back to 10 & 11 later)
 
-filenames = []
-for root, dirs, files, in os.walk(inCorpus, topdown=False):
-    for name in files:
+filenames = [] #create a list
+for root, dirs, files, in os.walk(inCorpus, topdown=False): #root 
         if '196' in name:
             filenames.append(os.path.join(root, name))
 
