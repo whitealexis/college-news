@@ -7,8 +7,8 @@ os.chdir("/Users/averymatteo/Desktop/projects/") #use os.chdir to navigate to wh
 inCorpus = "issues" #define inCorpus as issues
 outCorpus = "60s-tm" #define outCorpus as the decade you want 
 
-if os.path.exists(outCorpus) == False: #use comparison operator to text the existence of the folder
-    os.mkdir(outCorpus) #create outCorpus (come back to 10 & 11 later)
+if os.path.exists(outCorpus) == False: #use comparison operator to test the existence of the folder
+    os.mkdir(outCorpus) #create outCorpus folder (come back to 10 & 11 later)
 
 filenames = [] #create a list
 for root, dirs, files, in os.walk(inCorpus, topdown=False): 
@@ -41,9 +41,9 @@ for issue in filenames: #create for loop iterating through every issue
         stop+=500 #stop+ tells loop to stop and restart at the end of the 500 characters
         newfile = outCorpus + "/" + issue_name + '-chunk' + str(i) + '.txt' #create new file name
 
-f = open(newfile, "w") #open and write new chunked files
-f.write(slice) #
-f.close()
+f = open(newfile, "w") #open new file created on previous line
+f.write(slice) #writes each piece of sliced text
+f.close() #closes text file
 
 
 
