@@ -28,6 +28,25 @@ def countkeys(regex, text): # this function requires two variables: a regular ex
     keywordcount = len(keyword_list) # count keyword instances found
     return keywordcount # output of the function is
 
+def get_contexts(keyword, text, chars):
+    n = 0 # Generates a list of passages that include the keyword
+    context_passages = []
+    for instance in re.finditer(keyword, text[n:], flags=re.IGNORECASE):
+        startindex, endindex = instance.span()
+        if startindex > chars:
+            startcontext = startindex - chars 
+        else:
+            startcontext = 0
+        if startindex + chars > len(text) - 1:
+            endcontext = len(text) - 1
+        else:
+            endcontext = startindex + chars
+        context = cn_text[startcontext:endcontext] 
+        n = endindex
+        cleantext = context.replace('\n', ' ')
+        context_passages.append(cleantext)
+    return context_passages
+    
 ########################################################################## 
 
 rows = [] #create a list 
@@ -43,11 +62,9 @@ for filename in os.listdir(directory): #for every file in the folder, do these s
         for key in keyrex:
             word = key[0] # display keyword
             regex = key[1] # regular expression for keyword
-            keywordcount = countkeys(regex, cn_text) # calls function above
-            if keywordcount == 0:
-                continue
-            else:
-                data = [filename, date, year, month, word, keywordcount] #group file name (minus issues/ and .txt parts), date, keyword, and keyword count in a list
+            passages = get_contexts(regex, cn_text, 200) # calls function above
+            for passage in passages:
+                data = [filename, date, year, month, word, passage] #group file name (minus issues/ and .txt parts), date, keyword, and keyword count in a list
                 rows.append(data) #put data into rows variable
 
 #write csv file to store keyword information
