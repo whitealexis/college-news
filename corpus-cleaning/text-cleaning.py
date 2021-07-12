@@ -49,7 +49,7 @@ def fix_hyphens(text): # for a given string, find hyphens at the end of a line a
     output = "\n".join(linesclean) # make the list into a string separated by new line characters
     return output # return the string
 
-def remove_symbols(text): # remove symbols from a string
+def remove_symbols(text): # remove symbols and numbers from a string
     no_symbols = re.sub(r'[^a-z]', " ", text) # replace any non-alphabetical characters with a space
     return no_symbols
 
@@ -70,10 +70,9 @@ def deep_clean_list(text): # clean the text by running the following steps:
     return lemmatized # return the cleaned, lemmatized text as a list of words
 
 def clean(text):
-    ocr_cleaner = clean_words(text)
+    ocr_cleaner = clean_words(text) # remove strings etc.
     no_hyphens = fix_hyphens(ocr_cleaner) # fix hyphens at the end of lines 
-    no_symbols = clean_words(no_hyphens) # remove zeros & symbols
-    return no_symbols # return the cleaned version of the text
+    return no_hyphens # return the cleaned version of the text
 
 infile = 'issues/cn1959-10-07.txt' # filepath for input text
 with open(infile, 'r', encoding='utf-8') as f: # open the file
