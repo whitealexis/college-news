@@ -69,7 +69,7 @@ for filename in os.listdir(directory): #for every file in the folder, do these s
 
 #write csv file to store keyword information
 #use GUI to create and save an empty csv file
-header = ["filename", "date", "year", "month", "keyword", "count"] #name header cells
+header = ["filename", "date", "year", "month", "keyword", "context"] #name header cells
 #put saved csv file name below in quotes
 with open("multisearch.csv", "w", encoding = "utf-8", newline = '') as outfile: #open and write to csv file
     writer = csv.writer(outfile) #create csv writer
