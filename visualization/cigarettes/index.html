@@ -3,14 +3,15 @@
 
 <head>
   <script data-require="d3@4.0.0" data-semver="4.0.0" src="https://d3js.org/d3.v4.js"></script>
+  <meta charset="UTF-8">
 </head>
 
 <body>
   <h2>Spiral Plot</h2>
   <div id="chart"></div>
   <script>
-     
-      
+
+
     //setting up the size of the graph
     var width = 700,
       height = 700,
@@ -59,22 +60,22 @@
       //callback--two variables from  data
         //parsing the string variable(year_and_month)
         var parseTime = d3.timeParse("%Y-%m");
-          parseTime("d[i].year_and_month");
+          parseTime(d[i].year_and_month);
           //push function adds data to the list
-       myData.push({  
+       myData.push({
         date: parseTime,
-        value: d.relative_frequency
+        value: d[i].relative_frequency,
       });
     }
 
-    
+
     // timescale:
     var timeScale = d3.scaleTime()
       .domain(d3.extent(myData, function(d){
         return d.date;
       }))
       .range([0, spiralLength]);
-    
+
     // yScale for the bar height
     var yScale = d3.scaleLinear()
       .domain([0, d3.max(myData, function(d){
@@ -88,16 +89,16 @@
       .enter()
       .append("rect")
       .attr("x", function(d,i){
-        
+
         // placement calculations
         var linePer = timeScale(d.date),
             posOnLine = path.node().getPointAtLength(linePer),
             angleOnLine = path.node().getPointAtLength(linePer - barWidth);
-      
+
         d.linePer = linePer; // % distance are on the spiral
         d.x = posOnLine.x; // x postion on the spiral
         d.y = posOnLine.y; // y position on the spiral
-        
+
         d.a = (Math.atan2(angleOnLine.y, angleOnLine.x) * 180 / Math.PI) - 90; //angle at the spiral position
 
         return d.x;
@@ -116,7 +117,7 @@
       .attr("transform", function(d){
         return "rotate(" + d.a + "," + d.x  + "," + d.y + ")"; // rotate the bar
       });
-    
+
     // add date labels
 /*     var tF = d3.timeFormat("%b %Y"),
         firstInMonth = {};
@@ -145,8 +146,8 @@
       .style("fill", "grey")
       .attr("startOffset", function(d){
         return ((d.linePer / spiralLength) * 100) + "%";
-      }) 
-      
+      })
+
     var tooltip = d3.select("#chart")
     .append('div')
     .attr('class', 'tooltip');
