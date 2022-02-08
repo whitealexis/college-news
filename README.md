@@ -19,3 +19,4 @@ Bryn Mawr College [Digital Scholarship Summer Fellows Program 2021](https://digb
 ## About the project
 
 Our corpus: *The College News*, a weekly newspaper published by Bryn Mawr students from 1914-1968.
+[Project website](https://digitalscholarship.brynmawr.edu/collegenews/)
